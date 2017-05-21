@@ -1,8 +1,9 @@
+## Here is an example for manpages.
+##
 syntax "man" "\.[1-9]x?$"
-
-SECTION: "\.(S|T)H.*$"
-KEYWORD: "\.(BR?|I[PR]?).*$"
-MACRO:   "\.(S|T)H|\.TP|\.(BR?|I[PR]?|PP)|\\f[BIPR]"
-+STRING
-STRING:  "\.(br|DS|RS|RE|PD)"
-+LINT
+color green "\.(S|T)H.*$"
+color brightgreen "\.(S|T)H" "\.TP"
+color brightred "\.(BR?|I[PR]?).*$"
+color brightblue "\.(BR?|I[PR]?|PP)"
+color brightwhite "\\f[BIPR]"
+color yellow "\.(br|DS|RS|RE|PD)"

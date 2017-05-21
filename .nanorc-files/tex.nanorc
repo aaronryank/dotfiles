@@ -1,6 +1,6 @@
-syntax "tex" "\.(tex|cls|ltx|sty|dtx|ins|bbl)$"
-
-MACRO:   "\\[A-Za-z]+"
-SECTION: "\\section"
-COMMENT: "%.*"
-+LINT
+## Here is a short example for TeX files.
+##
+syntax "tex" "\.tex$"
+icolor green "\\.|\\[A-Z]*"
+color magenta "[{}]"
+color blue "(^|[^\])%.*"
