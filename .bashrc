@@ -41,8 +41,56 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+export LS_ARGS=--color=auto
+export GREP_ARGS=--color=auto
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls $LS_ARGS'
+    alias ll='ls $LS_ARGS -l'
+    alias la='ls $LS_ARGS la'
+    alias dir='dir $LS_ARGS'
+    alias vdir='vdir $LS_ARGS'
+
+    alias grep='grep $GREP_ARGS'
+    alias fgrep='fgrep $GREP_ARGS'
+    alias egrep='egrep $GREP_ARGS'
+fi
+
 export rvm_silence_path_mismatch_check_flag=1
 
 alias apt-get='sudo apt-get'
-export PATH=$PATH:/usr/games
+alias :q="echo 'This is not vim ye daft idiot!' && sleep 2 && exit"
+alias mckd="mkdir
+alias nethack="ssh nethack@nethack.alt.org"
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+export PATH=$PATH:/usr/games:.
 export PS1='\[\e[1;32m\]aaronryank\[\e[m\]@\[\e[1;34m\]\w\[\e[m\]\[\e[33m\]\[$(__git_ps1 " (%s)")\] \[\e[1;35m\]->\[\e[m\] '
+
+# make commands case-insensitive, thanks @DennisMitchell
+if [[ "$(type -t command_not_found_handle)" == function ]]; then
+        eval "$(printf 'lowercase_%s' "$(declare -f command_not_found_handle)")"
+else
+        lowercase_command_not_found_handle ()
+        {
+                printf "$0: $1: command not found\n" >&2
+                return 127
+        }
+fi
+
+command_not_found_handle ()
+{
+        if [[ "${1,,}" != "$1" ]]; then
+                "${1,,}" "${@:2}"
+        else
+                lowercase_command_not_found_handle "$@"
+        fi
+}
+
+# make dir, cd to it.
+mkcd()
+{
+    mkdir $1
+    cd $1
+}
