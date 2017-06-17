@@ -8,6 +8,7 @@ alias wget=ping
 alias rm="echo \"You can't use rm\" #"
 alias man='echo No manual entry for $1'
 alias vim=nano
+alias echo=`bash -c`          # credit https://chat.stackexchange.com/transcript/message/38176402#38176402
 
 # Alternate
 #alias ls='cmd.exe /C DIR'
