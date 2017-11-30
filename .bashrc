@@ -2,8 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-. /etc/apache2/envvars
-
 # If not running interactively, don't do anything else
 [ -z "$PS1" ] && return
 
@@ -60,37 +58,8 @@ fi
 
 export rvm_silence_path_mismatch_check_flag=1
 
-alias apt-get='sudo apt-get'
 alias :q="echo 'This is not vim ye daft idiot!' && sleep 2 && exit"
-alias mckd="mkdir
+alias mckd="mkdir $1 && cd $1"
 alias nethack="ssh nethack@nethack.alt.org"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 export PATH=$PATH:/usr/games:.
-export PS1='\[\e[1;32m\]aaronryank\[\e[m\]@\[\e[1;34m\]\w\[\e[m\]\[\e[33m\]\[$(__git_ps1 " (%s)")\] \[\e[1;35m\]->\[\e[m\] '
-
-# make commands case-insensitive, thanks @DennisMitchell
-if [[ "$(type -t command_not_found_handle)" == function ]]; then
-        eval "$(printf 'lowercase_%s' "$(declare -f command_not_found_handle)")"
-else
-        lowercase_command_not_found_handle ()
-        {
-                printf "$0: $1: command not found\n" >&2
-                return 127
-        }
-fi
-
-command_not_found_handle ()
-{
-        if [[ "${1,,}" != "$1" ]]; then
-                "${1,,}" "${@:2}"
-        else
-                lowercase_command_not_found_handle "$@"
-        fi
-}
-
-# make dir, cd to it.
-mkcd()
-{
-    mkdir $1
-    cd $1
-}
