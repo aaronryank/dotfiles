@@ -47,7 +47,7 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls $LS_ARGS'
     alias ll='ls $LS_ARGS -l'
-    alias la='ls $LS_ARGS la'
+    alias la='ls $LS_ARGS -A'
     alias dir='dir $LS_ARGS'
     alias vdir='vdir $LS_ARGS'
 
