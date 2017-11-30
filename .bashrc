@@ -59,7 +59,7 @@ fi
 export rvm_silence_path_mismatch_check_flag=1
 
 alias :q="echo 'This is not vim ye daft idiot!' && sleep 2 && exit"
+alias ..="cd .."
 alias mckd="mkdir $1 && cd $1"
-alias nethack="ssh nethack@nethack.alt.org"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 export PATH=$PATH:/usr/games:.
